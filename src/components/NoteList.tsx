@@ -3,7 +3,8 @@ import {Column} from "@/components/Column.tsx";
 import {Card, CardContent, CardTitle} from "@/components/Card";
 import {Row} from "@/components/Row.tsx";
 import {Button} from "@/components/Button.tsx";
-import {Dispatch, SetStateAction} from "react";
+import {Dispatch, SetStateAction, useState} from "react";
+import {formatDateFromMs} from "@/utils";
 
 interface NoteActions {
     deleteNote: (id: string) => void;
@@ -16,7 +17,9 @@ interface NoteListProps {
     actions: NoteActions;
 }
 
-export const NoteList = ({ notes, actions }: NoteListProps) => {
+export const NoteList = ({notes, actions}: NoteListProps) => {
+    const [filter, setFilter] = useState<'newest' | 'oldest'>('newest');
+
     if (notes.length === 0) {
         return (
             <Column>
@@ -31,27 +34,47 @@ export const NoteList = ({ notes, actions }: NoteListProps) => {
 
     return (
         <Column className={'space-y-4 w-full'}>
-            {notes.map((note) => (
-                <Card key={note.id}>
-                    <CardTitle>{note.title}</CardTitle>
-                    <CardContent>
-                        <p>{note.content}</p>
+            <select
+                id="filter"
+                value={filter}
+                onChange={(e) => setFilter(e.target.value as 'newest' | 'oldest')}
+                className="border bg-white rounded-lg dark:bg-gray-800 px-2 py-2"
+            >
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+            </select>
 
-                        <Row className="justify-end">
-                            <Button
-                                onClick={() => {
-                                    actions.setActiveNote(note);
-                                    actions.setOpenEditNoteModal(true);
-                                }}
-                                variant={'warning'}
-                            >
-                                Edit
-                            </Button>
-                            <Button variant={'danger'} onClick={() => actions.deleteNote(note.id)}>Delete</Button>
-                        </Row>
-                    </CardContent>
-                </Card>
-            ))}
+
+            {notes
+                .sort((a, b) => {
+                    if (filter === 'newest') {
+                        return (b.lastUpdate ?? 0) - (a.lastUpdate ?? 0);
+                    } else {
+                        return (a.lastUpdate ?? 0) - (b.lastUpdate ?? 0);
+                    }
+                })
+                .map((note) => (
+                    <Card key={note.id}>
+                        <CardTitle>{note.title}</CardTitle>
+                        <CardContent>
+                            <p>{note.content}</p>
+                            <p>{formatDateFromMs(note.lastUpdate ?? Date.now())}</p>
+
+                            <Row className="justify-end">
+                                <Button
+                                    onClick={() => {
+                                        actions.setActiveNote(note);
+                                        actions.setOpenEditNoteModal(true);
+                                    }}
+                                    variant={'warning'}
+                                >
+                                    Edit
+                                </Button>
+                                <Button variant={'danger'} onClick={() => actions.deleteNote(note.id)}>Delete</Button>
+                            </Row>
+                        </CardContent>
+                    </Card>
+                ))}
         </Column>
     );
 };

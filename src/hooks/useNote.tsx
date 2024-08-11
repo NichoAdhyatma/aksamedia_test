@@ -5,18 +5,21 @@ export type Note = {
     id: string;
     title: string;
     content: string;
+    lastUpdate?: number;
 }
 
 const noteMock: Note[] = [
     {
         id: '1',
         title: 'First Note',
-        content: 'This is the first note'
+        content: 'This is the first note',
+        lastUpdate: Date.now()
     },
     {
         id: '2',
         title: 'Second Note',
-        content: 'This is the second note'
+        content: 'This is the second note',
+        lastUpdate: Date.now()
     }
 ]
 
@@ -32,9 +35,9 @@ export const useNote = () => {
     const [activeNote, setActiveNote] = useState<Note | null>(null);
 
     const createNote = (note: Note) => {
-        setNotes([...notes, note]);
+        setNotes([note, ...notes]);
 
-        localStorage.setItem('notes', JSON.stringify([...notes, note]));
+        localStorage.setItem('notes', JSON.stringify([note, ...notes]));
 
         alert('Note created');
     };
@@ -45,7 +48,8 @@ export const useNote = () => {
                 return {
                     id,
                     title,
-                    content
+                    content,
+                    lastUpdate: Date.now()
                 };
             }
             return note;
@@ -71,11 +75,11 @@ export const useNote = () => {
         const content = formData.get('content') as string;
 
         if (action === NoteAction.CREATE) {
-
             createNote({
                 id: uuidv4(),
                 title,
-                content
+                content,
+                lastUpdate: Date.now()
             });
         }
 

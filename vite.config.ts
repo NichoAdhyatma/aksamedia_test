@@ -14,6 +14,7 @@ export default defineConfig({
             '@/routes': resolve('src/routes'),
             '@/pages': resolve('src/pages'),
             '@/providers': resolve('src/providers'),
+            '@/utils': resolve('src/utils'),
         }
     }
 })

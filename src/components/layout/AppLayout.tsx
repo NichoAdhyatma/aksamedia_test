@@ -12,6 +12,7 @@ import {FaUser} from "react-icons/fa";
 export const AppLayout = ({className, children, ...props}: ComponentProps<'div'>) => {
     const {handleLogout, authUser} = useAuth();
 
+
     const navigate = useNavigate();
 
     return (
@@ -20,7 +21,7 @@ export const AppLayout = ({className, children, ...props}: ComponentProps<'div'>
             <Navbar>
                 <NavbarContent className={'flex justify-end pr-5'}>
                     {authUser?.username && <Dropdown icon={<FaUser/>} triggerLabel={authUser?.fullName ?? ""}>
-                        <Column className={'space-y-4'}>
+                        <Column className={'space-y-4 w-full items-stretch px-4'}>
                             <Button variant={'ghost'} onClick={() => navigate('/')}>
                                 Home
                             </Button>

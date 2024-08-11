@@ -127,7 +127,7 @@ export const DashboardPage = () => {
                         }
                     />
 
-                    <Row className={'justify-center'}>
+                    {notes.length > 0 && <Row className={'justify-center'}>
                         <Button
                             onClick={() => setPage(currentPage - 1)}
                             disabled={currentPage === 1}
@@ -141,7 +141,7 @@ export const DashboardPage = () => {
                         >
                             Next
                         </Button>
-                    </Row>
+                    </Row>}
                 </Column>
             </Column>
         </AppLayout>
