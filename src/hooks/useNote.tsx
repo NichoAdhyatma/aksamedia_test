@@ -40,7 +40,7 @@ export const useNote = () => {
     };
 
     const updateNote = (id: string, {title, content}: { title: string, content: string }) => {
-        setNotes(notes.map((note) => {
+        const newNotes = notes.map((note) => {
             if (note.id === id) {
                 return {
                     id,
@@ -49,9 +49,11 @@ export const useNote = () => {
                 };
             }
             return note;
-        }));
+        });
 
-        localStorage.setItem('notes', JSON.stringify(notes));
+        setNotes(newNotes);
+
+        localStorage.setItem('notes', JSON.stringify(newNotes));
 
         alert('Note updated');
     }
@@ -87,9 +89,11 @@ export const useNote = () => {
     }
 
     const deleteNote = (id: string) => {
-        setNotes(notes.filter((note) => note.id !== id));
+        const newNote = notes.filter((note) => note.id !== id);
 
-        localStorage.setItem('notes', JSON.stringify(notes));
+        setNotes(newNote);
+
+        localStorage.setItem('notes', JSON.stringify(newNote));
 
         alert('Note deleted');
     };

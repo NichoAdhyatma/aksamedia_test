@@ -5,9 +5,11 @@ import Modal from "@/components/Modal";
 import {TextField} from "@/components/TextField";
 import {TextArea} from "@/components/TextArea";
 import {NoteAction, useNote} from "@/hooks/useNote";
-import {Card, CardTitle, CardContent} from "@/components/Card";
 import {Row} from "@/components/Row.tsx";
-import {FormEvent, useState} from "react";
+import {FormEvent, useMemo, useState} from "react";
+import {usePagination} from "@/hooks/usePagination.tsx";
+import {useSearch} from "@/hooks/useSearch.tsx";
+import {NoteList} from "@/components/NoteList.tsx";
 
 export const DashboardPage = () => {
     const {
@@ -16,7 +18,18 @@ export const DashboardPage = () => {
         handleFormAction,
         deleteNote
     } = useNote();
+
+    const {
+        currentPage,
+        totalPages,
+        paginate,
+        setPage
+    } = usePagination({totalItems: notes.length});
+
+    const {searchParams, onSearchChange} = useSearch();
+
     const [openCreateNoteModal, setOpenCreateNoteModal] = useState(false);
+
     const [openEditNoteModal, setOpenEditNoteModal] = useState(false);
 
     const handleCreateNote = (e: FormEvent<HTMLFormElement>) => {
@@ -29,9 +42,14 @@ export const DashboardPage = () => {
         setOpenEditNoteModal(false);
     }
 
+    const paginatedNotes = useMemo(() => paginate(notes).filter((note) =>
+        note.title.includes(searchParams.get('note') ?? "") ||
+        note.content.includes(searchParams.get('note') ?? "")
+    ), [notes, paginate, searchParams]);
+
     return (
-        <AppLayout>
-            <Column className={'space-y-0 max-w-lg mx-auto'}>
+        <AppLayout className={'h-fit'}>
+            <Column className={'max-w-lg mx-auto'}>
                 <Modal
                     open={openCreateNoteModal}
                     onOpenChange={setOpenCreateNoteModal}
@@ -89,31 +107,41 @@ export const DashboardPage = () => {
                     </form>
                 </Modal>
 
+                <Column className={'space-y-4 w-full mb-10'}>
+                    <TextField
+                        name={'note'}
+                        placeholder={'Search note'}
+                        onChange={onSearchChange}
+                        defaultValue={searchParams.get('note') ?? ""}
+                        type={'search'}
+                    />
 
-                <Column className={'space-y-4 mt-5 w-full'}>
-                    <TextField type={'search'}/>
+                    <NoteList
+                        notes={paginatedNotes}
+                        actions={
+                            {
+                                deleteNote,
+                                setActiveNote,
+                                setOpenEditNoteModal
+                            }
+                        }
+                    />
 
-                    {
-                        notes.map((note) => (
-                            <Card key={note.id}>
-                                <CardTitle>{note.title}</CardTitle>
-                                <CardContent>
-                                    <p>{note.content}</p>
-
-                                    <Row className={'justify-end'}>
-                                        <Button onClick={() => {
-                                            setActiveNote(note);
-                                            setOpenEditNoteModal(true);
-                                        }}>Edit</Button>
-                                        <Button onClick={() => deleteNote(note.id)}>Delete</Button>
-                                    </Row>
-
-                                </CardContent>
-                            </Card>)
-                        )
-                    }
+                    <Row className={'justify-center'}>
+                        <Button
+                            onClick={() => setPage(currentPage - 1)}
+                        >
+                            Previous
+                        </Button>
+                        <span className="mx-2">Page {currentPage} of {totalPages}</span>
+                        <Button
+                            onClick={() => setPage(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                        >
+                            Next
+                        </Button>
+                    </Row>
                 </Column>
-
             </Column>
         </AppLayout>
     );
