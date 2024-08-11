@@ -33,7 +33,7 @@ export const Dropdown = ({triggerLabel, children}: DropdownProps) => {
             </button>
 
             {isOpen && (
-                <div className="absolute mt-2 w-48 right-1 mx-auto rounded-md shadow-lg bg-white">
+                <div className="absolute mt-2 w-48 right-1 dark:bg-gray-800 mx-auto rounded-lg shadow-lg bg-white">
                     <ul className="py-1">
                         {children}
                     </ul>

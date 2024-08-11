@@ -48,7 +48,7 @@ export const DashboardPage = () => {
     ), [notes, paginate, searchParams]);
 
     return (
-        <AppLayout className={'h-fit'}>
+        <AppLayout>
             <Column className={'max-w-lg mx-auto'}>
                 <Modal
                     open={openCreateNoteModal}

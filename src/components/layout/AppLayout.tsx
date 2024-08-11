@@ -10,11 +10,15 @@ export const AppLayout = ({className, children, ...props}: ComponentProps<'div'>
     const {handleLogout, authUser} = useAuth();
 
     return (
-        <div className={twMerge('w-full h-screen', className)} {...props}>
+        <div
+            className={twMerge('w-full min-h-screen h-full bg-white dark:bg-gray-800 dark:text-white', className)} {...props}>
             <Navbar>
                 <NavbarContent className={'flex justify-end pr-5'}>
                     <Dropdown triggerLabel={authUser?.username ?? ""}>
-                        <Column>
+                        <Column className={'space-y-4'}>
+                            <Button>
+                                Profile
+                            </Button>
                             {
                                 authUser?.username &&
                                 <Button onClick={handleLogout} className={'bg-red-600 hover:bg-red-500'}>
