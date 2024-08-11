@@ -49,14 +49,16 @@ export const DashboardPage = () => {
 
     return (
         <AppLayout>
-            <Column className={'max-w-lg mx-auto'}>
+            <Column>
                 <Modal
                     open={openCreateNoteModal}
                     onOpenChange={setOpenCreateNoteModal}
                     trigger={<Button className={'mb-4'}>Create Note</Button>}
                 >
                     <form ref={formRef} onSubmit={handleCreateNote}>
-                        <Column className={'space-y-4'}>
+                        <Column className={'gap-y-4 w-full items-stretch mt-4'}>
+                            <h1 className={'text-center font-semibold text-2xl mb-4'}>Create Note</h1>
+
                             <TextField
                                 placeholder={'Title'}
                                 name={'title'}
@@ -71,7 +73,7 @@ export const DashboardPage = () => {
                                 required
                             />
 
-                            <Button type={'submit'}>
+                            <Button className={'mt-4'} type={'submit'}>
                                 Create
                             </Button>
                         </Column>
@@ -83,7 +85,8 @@ export const DashboardPage = () => {
                     onOpenChange={setOpenEditNoteModal}
                 >
                     <form ref={formRef} onSubmit={handleEditNote}>
-                        <Column className={'space-y-4'}>
+                        <Column className={'gap-y-4 w-full items-stretch mt-4'}>
+                            <h1 className={'text-center font-semibold text-2xl mb-4'}>Edit Note</h1>
                             <TextField
                                 placeholder={'Title'}
                                 name={'title'}
@@ -96,18 +99,19 @@ export const DashboardPage = () => {
                                 placeholder={'Content'}
                                 name={'content'}
                                 id={'content'}
+
                                 defaultValue={activeNote?.content}
                                 required
                             />
 
-                            <Button type={'submit'}>
+                            <Button className={'mt-4'} type={'submit'}>
                                 Edit
                             </Button>
                         </Column>
                     </form>
                 </Modal>
 
-                <Column className={'space-y-4 w-full mb-10'}>
+                <Column className={'gap-y-4 items-stretch max-w-lg w-full mb-10'}>
                     <TextField
                         name={'note'}
                         placeholder={'Search note'}
@@ -127,21 +131,22 @@ export const DashboardPage = () => {
                         }
                     />
 
-                    {notes.length > 0 && <Row className={'justify-center'}>
-                        <Button
-                            onClick={() => setPage(currentPage - 1)}
-                            disabled={currentPage === 1}
-                        >
-                            Previous
-                        </Button>
-                        <span className="mx-2">Page {currentPage} of {totalPages}</span>
-                        <Button
-                            onClick={() => setPage(currentPage + 1)}
-                            disabled={currentPage === totalPages}
-                        >
-                            Next
-                        </Button>
-                    </Row>}
+                    {notes.length > 0 &&
+                        <Row className={'justify-center mt-4'}>
+                            <Button
+                                onClick={() => setPage(currentPage - 1)}
+                                disabled={currentPage === 1}
+                            >
+                                Previous
+                            </Button>
+                            <span className="mx-2">Page {currentPage} of {totalPages}</span>
+                            <Button
+                                onClick={() => setPage(currentPage + 1)}
+                                disabled={currentPage === totalPages}
+                            >
+                                Next
+                            </Button>
+                        </Row>}
                 </Column>
             </Column>
         </AppLayout>

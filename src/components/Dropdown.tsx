@@ -39,7 +39,7 @@ export const Dropdown = ({triggerLabel, icon, children}: DropdownProps) => {
                     {icon}
                 </div>
 
-                <p className={'truncate text-xs max-w-[10ch]'}>
+                <p className={'truncate text-sm max-w-[10ch]'}>
                     {triggerLabel}
                 </p>
 

@@ -56,9 +56,9 @@ export const NoteList = ({notes, actions}: NoteListProps) => {
                 .map((note) => (
                     <Card key={note.id}>
                         <CardTitle>{note.title}</CardTitle>
-                        <CardContent>
+                        <CardContent className={'mt-1'}>
                             <p>{note.content}</p>
-                            <p>{formatDateFromMs(note.lastUpdate ?? Date.now())}</p>
+                            <p className={'text-slate-500'}>{formatDateFromMs(note.lastUpdate ?? Date.now())}</p>
 
                             <Row className="justify-end">
                                 <Button

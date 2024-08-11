@@ -7,6 +7,7 @@ export const useAuth = () => {
     const context = useContext(UsernameContext);
     const navigate = useNavigate();
 
+
     const loginValidation = (username: string | null, password?: string | null) => {
         if (username === 'Nicho' && password === '123') {
             alert('Login Success');
@@ -44,6 +45,22 @@ export const useAuth = () => {
         loginValidation(username, password);
     };
 
+    const handleUpdateProfile = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (!formRef.current) return;
+
+        const formData = new FormData(formRef.current);
+
+        const fullName = formData.get('fullName') as string;
+
+        localStorage.setItem('fullName', fullName);
+
+        context?.setFullName(fullName);
+
+        alert('Update Success');
+    }
+
     const handleLogout = () => {
         localStorage.removeItem('username');
         context?.setUsername(undefined);
@@ -53,5 +70,6 @@ export const useAuth = () => {
         alert('Logout Success');
     }
 
-    return {formRef, authUser: context, handleLogin, handleLogout}
+
+    return {formRef, authUser: context, handleLogin, handleUpdateProfile, handleLogout}
 }
