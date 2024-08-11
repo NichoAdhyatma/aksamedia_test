@@ -4,7 +4,7 @@ import ThemeSelector from "@/components/ThemeSelector.tsx";
 
 export const NavbarContent = ({children, className,...props} : ComponentProps<'div'>) => {
     return (
-        <div className={twMerge('flex items-center space-x-10', className)} {...props}>
+        <div className={twMerge('flex items-center space-x-4', className)} {...props}>
             <ThemeSelector/>
 
             {children}
