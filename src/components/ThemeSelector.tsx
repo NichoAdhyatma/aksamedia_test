@@ -11,12 +11,11 @@ const ThemeSelector: React.FC = () => {
 
     return (
         <div className="flex items-center justify-center space-x-4 p-4">
-            <label htmlFor="theme-select" className="mr-2">Theme:</label>
             <select
                 id="theme-select"
                 value={theme}
                 onChange={handleChange}
-                className="border bg-white rounded-lg dark:bg-gray-800 px-2 py-1"
+                className="border bg-white rounded-lg dark:bg-gray-800 px-2 py-2"
             >
                 <option value="light">Light</option>
                 <option value="dark">Dark</option>

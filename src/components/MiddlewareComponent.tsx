@@ -6,10 +6,7 @@ interface ProtectedRouteProps {
     children: ReactNode;
 }
 
-export const GuestComponent = ({
-                                   redirectPath = "/",
-                                   children,
-                               }: ProtectedRouteProps) => {
+export const GuestComponent = ({redirectPath = "/", children,}: ProtectedRouteProps) => {
     if (localStorage.getItem('username') != null) {
         return <Navigate to={redirectPath} replace/>;
     }
@@ -17,11 +14,7 @@ export const GuestComponent = ({
     return <>{children}</>;
 }
 
-export const MiddlewareComponent = ({
-                                        redirectPath = "/",
-                                        children,
-                                    }: ProtectedRouteProps) => {
-
+export const MiddlewareComponent = ({redirectPath = "/", children,}: ProtectedRouteProps) => {
     if (localStorage.getItem('username') == null) {
         return <Navigate to={redirectPath} replace/>;
     }

@@ -130,6 +130,7 @@ export const DashboardPage = () => {
                     <Row className={'justify-center'}>
                         <Button
                             onClick={() => setPage(currentPage - 1)}
+                            disabled={currentPage === 1}
                         >
                             Previous
                         </Button>

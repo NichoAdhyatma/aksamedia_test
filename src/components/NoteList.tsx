@@ -43,10 +43,11 @@ export const NoteList = ({ notes, actions }: NoteListProps) => {
                                     actions.setActiveNote(note);
                                     actions.setOpenEditNoteModal(true);
                                 }}
+                                variant={'warning'}
                             >
                                 Edit
                             </Button>
-                            <Button onClick={() => actions.deleteNote(note.id)}>Delete</Button>
+                            <Button variant={'danger'} onClick={() => actions.deleteNote(note.id)}>Delete</Button>
                         </Row>
                     </CardContent>
                 </Card>
