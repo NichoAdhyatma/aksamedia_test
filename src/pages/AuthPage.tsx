@@ -1,32 +1,15 @@
 import {Column} from "@/components/Column";
 import {Button} from "@/components/Button";
 import {TextField} from "@/components/TextField";
-import {Navbar, NavbarContent} from "@/components/Navbar";
 import {useAuth} from "@/hooks/useAuth.tsx";
-import Dropdown from "@/components/Dropdown";
+import {AppLayout} from "@/components/layout/AppLayout";
 
-
-function App() {
-    const {formRef, handleLogin, handleLogout, authUser} = useAuth();
+function AuthPage() {
+    const {formRef, handleLogin} = useAuth();
 
     return (
-        <>
-            <Navbar>
-                <NavbarContent className={'flex justify-end pr-5'}>
-                    <Dropdown triggerLabel={authUser?.username ?? ""}>
-                        <Column>
-                            {
-                                authUser?.username &&
-                                <Button onClick={handleLogout} className={'bg-red-600 hover:bg-red-500'}>
-                                    Logout
-                                </Button>
-                            }
-                        </Column>
-                    </Dropdown>
-                </NavbarContent>
-            </Navbar>
-
-            <Column className={'space-y-4 mt-10 w-full'}>
+        <AppLayout>
+            <Column className={'space-y-4'}>
                 <h1 className={'font-semibold text-2xl text-center'}>Login</h1>
 
                 <Column>
@@ -59,8 +42,8 @@ function App() {
                     </Column>
                 </form>
             </Column>
-        </>
+        </AppLayout>
     )
 }
 
-export default App
+export default AuthPage

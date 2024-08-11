@@ -1,8 +1,14 @@
 import {ComponentProps} from "react";
 import {twMerge} from "tailwind-merge";
 
-export const TextField = ({className,...props} : ComponentProps<'input'>) => {
+export const TextField = ({className, ...props}: ComponentProps<'input'>) => {
     return (
-        <input className={twMerge('px-4 py-2 border-[1px] focus:outline-none border-slate-400 shadow-sm rounded-lg', className)} {...props}/>
+        <input
+            className={
+                twMerge('px-4 py-2 border-[1px] focus:outline-none focus:ring-1 border-slate-400' +
+                    ' ring-blue-600 shadow-sm rounded-lg w-full', className)
+            }
+            {...props}
+        />
     );
 };

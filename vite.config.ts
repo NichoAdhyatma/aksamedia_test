@@ -11,6 +11,8 @@ export default defineConfig({
             '@/components': resolve('src/components'),
             '@/hooks': resolve('src/hooks'),
             '@/context': resolve('src/context'),
+            '@/routes': resolve('src/routes'),
+            '@/pages': resolve('src/pages'),
         }
     }
 })
