@@ -1,18 +1,26 @@
 import AuthPage from "@/pages/AuthPage";
 import {DashboardPage} from "@/pages/DashboardPage";
+import {RouteObject} from "react-router-dom";
+import {GuestComponent, MiddlewareComponent} from "@/components/MiddlewareComponent";
 
 export const routeName = {
     auth: "/",
     dashboard: "/dashboard",
 }
 
-export const routes = [
+export const routes: RouteObject[] = [
     {
         path: "/",
-        element: <AuthPage/>,
+        element:
+            <GuestComponent redirectPath={'/dashboard'}>
+                <AuthPage/>
+            </GuestComponent>,
     },
     {
         path: "/dashboard",
-        element: <DashboardPage/>,
+        element:
+            <MiddlewareComponent>
+                <DashboardPage/>
+            </MiddlewareComponent>,
     },
 ]

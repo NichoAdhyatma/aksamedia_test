@@ -10,8 +10,10 @@ export const useAuth = () => {
     const loginValidation = (username: string | null, password?: string | null) => {
         if (username === 'Nicho' && password === '123') {
             alert('Login Success');
+
             localStorage.setItem('username', username);
             context?.setUsername(username);
+
             navigate('/dashboard');
         } else {
             alert('Login Failed');
@@ -38,6 +40,8 @@ export const useAuth = () => {
     const handleLogout = () => {
         localStorage.removeItem('username');
         context?.setUsername(undefined);
+
+        navigate('/');
 
         alert('Logout Success');
     }
