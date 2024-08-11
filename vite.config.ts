@@ -10,9 +10,10 @@ export default defineConfig({
             '@src': resolve('src'),
             '@/components': resolve('src/components'),
             '@/hooks': resolve('src/hooks'),
-            '@/context': resolve('src/context'),
+            '@/context': resolve('src/providers'),
             '@/routes': resolve('src/routes'),
             '@/pages': resolve('src/pages'),
+            '@/providers': resolve('src/providers'),
         }
     }
 })

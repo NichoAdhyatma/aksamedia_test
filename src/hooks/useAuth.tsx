@@ -1,5 +1,5 @@
 import {FormEvent, useContext, useRef} from "react";
-import {UsernameContext} from "@/context/usernameContext";
+import {UsernameContext} from "@/providers/UsernameProvider.tsx";
 import {useNavigate} from "react-router-dom";
 
 export const useAuth = () => {
@@ -12,7 +12,14 @@ export const useAuth = () => {
             alert('Login Success');
 
             localStorage.setItem('username', username);
+
+            if (localStorage.getItem('fullName') === null) {
+                localStorage.setItem('fullName', username);
+            }
+
             context?.setUsername(username);
+
+            context?.setFullName(username);
 
             navigate('/dashboard');
         } else {

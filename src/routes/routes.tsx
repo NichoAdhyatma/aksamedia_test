@@ -2,6 +2,7 @@ import AuthPage from "@/pages/AuthPage";
 import {DashboardPage} from "@/pages/DashboardPage";
 import {RouteObject} from "react-router-dom";
 import {GuestComponent, MiddlewareComponent} from "@/components/MiddlewareComponent";
+import {ProfilePage} from "@/pages/ProfilePage.tsx";
 
 export const routeName = {
     auth: "/",
@@ -21,6 +22,13 @@ export const routes: RouteObject[] = [
         element:
             <MiddlewareComponent>
                 <DashboardPage/>
+            </MiddlewareComponent>,
+    },
+    {
+        path: "/profile",
+        element:
+            <MiddlewareComponent>
+                <ProfilePage/>
             </MiddlewareComponent>,
     },
 ]
