@@ -1,7 +1,7 @@
 import AuthPage from "@/pages/AuthPage";
 import {DashboardPage} from "@/pages/DashboardPage";
 import {RouteObject} from "react-router-dom";
-import {GuestComponent, MiddlewareComponent} from "@/components/MiddlewareComponent";
+import {GuestComponent, MiddlewareComponent} from "@/components/layout/MiddlewareComponent.tsx";
 import {ProfilePage} from "@/pages/ProfilePage.tsx";
 
 export const routeName = {

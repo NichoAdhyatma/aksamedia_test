@@ -1,13 +1,13 @@
-import {Navbar, NavbarContent} from "@/components/Navbar";
-import Dropdown from "@/components/Dropdown.tsx";
-import {Column} from "@/components/Column.tsx";
-import {Button} from "@/components/Button.tsx";
+import {Navbar, NavbarContent} from "../atoms/Navbar";
+import Dropdown from "@/components/molecules/Dropdown.tsx";
+import {Column} from "@/components/atoms/Column.tsx";
+import {Button} from "@/components/atoms/Button.tsx";
 import {useAuth} from "@/hooks/useAuth.tsx";
 import {ComponentProps} from "react";
 import {twMerge} from "tailwind-merge";
 import {useNavigate} from "react-router-dom";
 import {FaUser} from "react-icons/fa";
-import ThemeSelector from "@/components/ThemeSelector.tsx";
+import ThemeSelector from "@/components/molecules/ThemeSelector.tsx";
 
 
 export const AppLayout = ({className, children, ...props}: ComponentProps<'div'>) => {

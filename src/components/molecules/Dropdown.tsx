@@ -1,5 +1,7 @@
 import {useState, useRef, useEffect, ReactNode} from 'react';
 import {IoIosArrowDown} from "react-icons/io";
+import {Button} from "@/components/atoms/Button";
+import {Column} from "@/components/atoms/Column.tsx";
 
 
 interface DropdownProps {
@@ -31,8 +33,9 @@ export const Dropdown = ({triggerLabel, icon, children}: DropdownProps) => {
 
     return (
         <div className="relative" ref={dropdownRef}>
-            <button
+            <Button
                 onClick={handleTriggerClick}
+                variant={'ghost'}
                 className="flex items-center space-x-3 border-[1px] border-gray-800 dark:border-white py-2 px-4 rounded-lg"
             >
                 <div>
@@ -44,13 +47,13 @@ export const Dropdown = ({triggerLabel, icon, children}: DropdownProps) => {
                 </p>
 
                 <IoIosArrowDown size={15}/>
-            </button>
+            </Button>
 
             {isOpen && (
                 <div className="absolute mt-2 w-48 right-1 dark:bg-gray-800 mx-auto rounded-lg shadow-lg bg-white">
-                    <ul className="py-4">
+                    <Column className="py-4">
                         {children}
-                    </ul>
+                    </Column>
                 </div>
             )}
         </div>

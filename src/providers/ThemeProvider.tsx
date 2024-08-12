@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useState, useEffect, ReactNode } from 'react';
 
 type Theme = 'light' | 'dark' | 'system';
 
@@ -13,7 +13,7 @@ interface ThemeProviderProps {
     children: ReactNode;
 }
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+export const ThemeProvider = ({ children } : ThemeProviderProps) => {
     const [theme, setTheme] = useState<Theme>(() => {
         if (typeof window !== 'undefined') {
             const userTheme = localStorage.getItem('theme') as Theme;

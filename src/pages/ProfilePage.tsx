@@ -1,7 +1,7 @@
 import {AppLayout} from "@/components/layout/AppLayout";
-import {Column} from "@/components/Column.tsx";
-import {Button} from "@/components/Button.tsx";
-import {TextField} from "@/components/TextField";
+import {Column} from "@/components/atoms/Column.tsx";
+import {Button} from "@/components/atoms/Button.tsx";
+import {TextField} from "@/components/atoms/TextField.tsx";
 import {useAuth} from "@/hooks/useAuth.tsx";
 import {useNavigate} from "react-router-dom";
 

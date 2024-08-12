@@ -1,9 +1,9 @@
-import {Column} from "@/components/Column";
-import {Button} from "@/components/Button";
-import {TextField} from "@/components/TextField";
+import {Column} from "@/components/atoms/Column.tsx";
+import {Button} from "@/components/atoms/Button.tsx";
+import {TextField} from "@/components/atoms/TextField.tsx";
 import {useAuth} from "@/hooks/useAuth.tsx";
 import {AppLayout} from "@/components/layout/AppLayout";
-import Modal from "@/components/Modal.tsx";
+import Modal from "@/components/molecules/Modal.tsx";
 import {FaInfo} from "react-icons/fa";
 
 function AuthPage() {

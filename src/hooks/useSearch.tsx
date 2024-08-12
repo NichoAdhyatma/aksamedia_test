@@ -25,5 +25,15 @@ export const useSearch = () => {
         })
     }
 
-    return {searchParams, onSearchChange, filterNote};
+    const sortNote = (notes: Note[], type: string) => {
+        return notes.sort((a, b) => {
+            if (type === 'newest') {
+                return (b.lastUpdate ?? 0) - (a.lastUpdate ?? 0);
+            } else {
+                return (a.lastUpdate ?? 0) - (b.lastUpdate ?? 0);
+            }
+        });
+    }
+
+    return {searchParams, onSearchChange, filterNote, sortNote};
 };
