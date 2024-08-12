@@ -20,6 +20,11 @@ interface NoteListProps {
 export const NoteList = ({notes, actions}: NoteListProps) => {
     const [filter, setFilter] = useState<'newest' | 'oldest'>('newest');
 
+    const handleOnClickDelete = (id: string) => {
+        const result = confirm('Are you sure you want to delete this note?');
+        if(result) actions.deleteNote(id)
+    }
+
     if (notes.length === 0) {
         return (
             <Column>
@@ -57,7 +62,7 @@ export const NoteList = ({notes, actions}: NoteListProps) => {
                     <Card key={note.id}>
                         <CardTitle>{note.title}</CardTitle>
                         <CardContent className={'mt-1'}>
-                            <p>{note.content}</p>
+                            <p className={'truncate'}>{note.content}</p>
                             <p className={'text-slate-500'}>{formatDateFromMs(note.lastUpdate ?? Date.now())}</p>
 
                             <Row className="justify-end">
@@ -70,7 +75,7 @@ export const NoteList = ({notes, actions}: NoteListProps) => {
                                 >
                                     Edit
                                 </Button>
-                                <Button variant={'danger'} onClick={() => actions.deleteNote(note.id)}>Delete</Button>
+                                <Button variant={'danger'} onClick={() => handleOnClickDelete(note.id)}>Delete</Button>
                             </Row>
                         </CardContent>
                     </Card>

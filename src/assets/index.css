@@ -30,4 +30,8 @@
     .dark ::-webkit-scrollbar-track {
         @apply bg-gray-800;
     }
+
+    .dark body {
+        @apply bg-gray-800;
+    }
 }

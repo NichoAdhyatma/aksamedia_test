@@ -3,7 +3,7 @@ import {twMerge} from "tailwind-merge";
 import {MdVisibility, MdVisibilityOff} from "react-icons/md";
 
 export const TextField = ({className, type = 'text', ...props}: ComponentProps<'input'>) => {
-    const [showPassword, setShowPassword] = useState<boolean>(type === 'password');
+    const [showPassword, setShowPassword] = useState<boolean>(false);
 
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);

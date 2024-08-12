@@ -33,17 +33,17 @@ export const Dropdown = ({triggerLabel, icon, children}: DropdownProps) => {
         <div className="relative" ref={dropdownRef}>
             <button
                 onClick={handleTriggerClick}
-                className="flex items-center space-x-4 border-[1px] border-gray-800 dark:border-white py-2 px-4 rounded-lg"
+                className="flex items-center space-x-3 border-[1px] border-gray-800 dark:border-white py-2 px-4 rounded-lg"
             >
                 <div>
                     {icon}
                 </div>
 
-                <p className={'truncate text-sm max-w-[10ch]'}>
+                <p className={'truncate text-sm max-w-[8ch]'}>
                     {triggerLabel}
                 </p>
 
-                <IoIosArrowDown/>
+                <IoIosArrowDown size={15}/>
             </button>
 
             {isOpen && (
