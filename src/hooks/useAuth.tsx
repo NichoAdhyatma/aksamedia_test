@@ -7,7 +7,6 @@ export const useAuth = () => {
     const context = useContext(UsernameContext);
     const navigate = useNavigate();
 
-
     const loginValidation = (username: string | null, password?: string | null) => {
         if (username === 'Nicho' && password === '123') {
             alert('Login Success');
@@ -69,7 +68,6 @@ export const useAuth = () => {
 
         alert('Logout Success');
     }
-
 
     return {formRef, authUser: context, handleLogin, handleUpdateProfile, handleLogout}
 }

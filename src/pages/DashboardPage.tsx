@@ -26,7 +26,7 @@ export const DashboardPage = () => {
         setPage
     } = usePagination({totalItems: notes.length});
 
-    const {searchParams, onSearchChange} = useSearch();
+    const {searchParams, onSearchChange, filterNote} = useSearch();
 
     const [openCreateNoteModal, setOpenCreateNoteModal] = useState(false);
 
@@ -42,10 +42,7 @@ export const DashboardPage = () => {
         setOpenEditNoteModal(false);
     }
 
-    const paginatedNotes = useMemo(() => paginate(notes).filter((note) =>
-        note.title.includes(searchParams.get('note') ?? "") ||
-        note.content.includes(searchParams.get('note') ?? "")
-    ), [notes, paginate, searchParams]);
+    const paginatedNotes = useMemo(() => paginate(filterNote(notes)), [filterNote, notes, paginate]);
 
     return (
         <AppLayout>
