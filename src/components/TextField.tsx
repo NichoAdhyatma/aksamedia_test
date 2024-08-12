@@ -14,7 +14,7 @@ export const TextField = ({className, type = 'text', ...props}: ComponentProps<'
             <input
                 type={showPassword ? 'text' : type}
                 className={twMerge(
-                    'px-4 py-2 border-[1px] focus:outline-none bg-white dark:bg-gray-800 focus:ring-1 border-slate-400' +
+                    'px-4 py-2 disabled:opacity-60 border-[1px] focus:outline-none bg-white dark:bg-gray-800 focus:ring-1 border-slate-400' +
                     ' ring-blue-600 shadow-sm rounded-lg w-full',
                     className
                 )}

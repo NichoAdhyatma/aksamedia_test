@@ -16,10 +16,13 @@ export const ProfilePage = () => {
                 <Button variant={'ghost'} className={'border-[1px] mb-2'} onClick={() => navigate('/')}>Back</Button>
                 <h1 className={'text-2xl font-semibold text-center'}>Profile Page</h1>
 
+                <label>Username</label>
+                <TextField placeholder={'Username'} defaultValue={authUser?.username} disabled/>
+
                 <form ref={formRef} onSubmit={handleUpdateProfile}>
                     <Column className={'w-full items-stretch mx-auto max-w-md gap-y-2'}>
-                        <label>Full Name</label>
-                        <TextField placeholder={'Full Name'} name={'fullName'} defaultValue={authUser?.fullName}/>
+                        <label htmlFor={'fullName'}>Full Name</label>
+                        <TextField id={'fullName'} placeholder={'Full Name'} name={'fullName'} defaultValue={authUser?.fullName}/>
                         <Button className={'mt-4'}>Update</Button>
                     </Column>
                 </form>
