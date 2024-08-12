@@ -19,7 +19,7 @@ const noteMock: Note[] = [
         id: '2',
         title: 'Second Note',
         content: 'This is the second note',
-        lastUpdate: Date.now()
+        lastUpdate: Date.now() + 1000
     }
 ]
 

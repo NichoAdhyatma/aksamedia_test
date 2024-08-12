@@ -22,7 +22,7 @@ export const ProfilePage = () => {
                 <form ref={formRef} onSubmit={handleUpdateProfile}>
                     <Column className={'w-full items-stretch mx-auto max-w-md gap-y-2'}>
                         <label htmlFor={'fullName'}>Full Name</label>
-                        <TextField id={'fullName'} placeholder={'Full Name'} name={'fullName'} defaultValue={authUser?.fullName}/>
+                        <TextField autoFocus id={'fullName'} placeholder={'Full Name'} name={'fullName'} defaultValue={authUser?.fullName}/>
                         <Button className={'mt-4'}>Update</Button>
                     </Column>
                 </form>
